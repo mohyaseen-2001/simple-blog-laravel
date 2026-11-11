@@ -43,7 +43,7 @@
             <th scope="row">{{ $post['id'] }}</th>
             <td>{{ $post['title'] }}</td>
             <td>{{ $post->user ? $post->user->name : 'not found' }}</td>
-            <td>{{ $post['created_at'] }}</td>
+            <td>{{ $post['created_at']->format('Y-m-d') }}</td>
             <td>
                 <a href="{{ route('posts.show', ['id' => $post['id']]) }}" class="btn btn-sm btn-info text-white">View</a>
 

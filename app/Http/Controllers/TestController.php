@@ -33,10 +33,9 @@ class TestController extends Controller
     
 public function store(Request $request)
 {
-    // 1. التحقق من البيانات (خطوة اختيارية لحماية الكود)
     $request->validate([
-        'title' => 'required',
-        'description' => 'required',
+        'title' => ['required','min:3,max:12'],
+        'description' => ['required','min:20,max:120'],
         'user_id' => 'required|exists:users,id',
     ]);
 
@@ -74,6 +73,11 @@ public function store(Request $request)
     }
 public function update($id)
 {
+    request()->validate([
+        'title' => ['required','min:3,max:12'],
+        'description' => ['required','min:20,max:120'],
+        'user_id' => 'required|exists:users,id',
+    ]);
     $post = Post::findOrFail($id);
 
     $post->title = request('title');
