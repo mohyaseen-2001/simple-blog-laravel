@@ -42,16 +42,13 @@
         <tr>
             <th scope="row">{{ $post['id'] }}</th>
             <td>{{ $post['title'] }}</td>
-            <td>{{ $post['posted_by'] }}</td>
+            <td>{{ $post->user ? $post->user->name : 'not found' }}</td>
             <td>{{ $post['created_at'] }}</td>
             <td>
-                <!-- Matches Route::get('/post/{id}', ...) -->
                 <a href="{{ route('posts.show', ['id' => $post['id']]) }}" class="btn btn-sm btn-info text-white">View</a>
 
-                <!-- Matches Route::get('/post/{post}/edit', ...) -->
                 <a href="{{ route('posts.edit', ['post' => $post['id']]) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                <!-- Note: Ensure you also add a destroy route in web.php if you use this -->
                 <form action="{{ route('posts.destroy', ['post' => $post['id']]) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')

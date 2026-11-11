@@ -15,3 +15,4 @@ Route::get('/post/{id}', [TestController::class, 'show'])->name('posts.show');
 Route::post('/post', [TestController::class, 'store'])->name('posts.store');
 Route::get('/post/{post}/edit',[TestController::class, 'edit'])->name('posts.edit');
 Route::delete('/post/{post}', [TestController::class, 'destroy'])->name('posts.destroy');
+Route::put('/post/{post}', [TestController::class, 'update'])->name('posts.update');

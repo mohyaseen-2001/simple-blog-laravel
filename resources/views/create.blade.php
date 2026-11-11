@@ -19,9 +19,13 @@
 
         <div class="mb-3">
             <label  class="form-label">Post Creator</label>
-            <select name="post_creator" class="form-control" >
-            
-            </select>
+<select name="user_id" class="form-control" required>
+    <option value="">Select Creator...</option>
+    @foreach($users as $user)
+        <option value="{{ $user->id }}">{{ $user->name }}</option>
+    @endforeach
+</select>
+
         </div>
 
         <button class="btn btn-success">Submit</button>

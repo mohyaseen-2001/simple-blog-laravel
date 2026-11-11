@@ -18,8 +18,10 @@
             Post Creator Info
         </div>
         <div class="card-body">
-            <h5 class="card-title">Name: {{$post['posted_by']}}</h5>
-            <p class="card-text">Email: {{$post['email']}}</p>
+<h5 class="card-title">Name: {{ $post->user ? $post->user->name : 'N/A' }}</h5>
+
+<p class="card-text">Email: {{ $post->user ? $post->user->email : 'N/A' }}</p>
+
             <p class="card-text">Created At: {{$post['created_at']}}</p>
         </div>
     </div>
