@@ -21,20 +21,17 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
-        // Log the user in
         Auth::login($user);
 
         return redirect()->route('posts.index')->with('success', 'Registration successful!');
     }
 
-    // Show login form
     public function showLogin()
     {
         return view('login');
@@ -48,7 +45,6 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Attempt to log the user in
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('posts.index')->with('success', 'Login successful!');
@@ -59,7 +55,6 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    // Handle logout request
     public function logout(Request $request)
     {
         Auth::logout();
